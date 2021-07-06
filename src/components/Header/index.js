@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { Container, NavItemContainer } from './styles';
 
@@ -6,7 +6,11 @@ import { FaBars } from 'react-icons/fa';
 
 import planets from '../../data/planets';
 
+import { PlanetContext } from '../../contexts/PlanetContext';
+
 function Header() {
+  const { navItemSelected } = useContext(PlanetContext);
+
   function toggle() {
     const navbarNav = document.querySelector('.navbar-nav');
     navbarNav.classList.toggle('toggled');
@@ -19,10 +23,12 @@ function Header() {
 
         <div className="navbar-nav">
           {planets.map(planet => (
-            <NavItem 
-              key={planet.id} 
-              name={planet.name} 
+            <NavItem
+              key={planet.id}
+              id={planet.id}
+              name={planet.name}
               color={planet.color}
+              selected={planet.id === navItemSelected}
             />
           ))}
         </div>
@@ -35,9 +41,15 @@ function Header() {
   );
 }
 
-function NavItem({ name, color }) {
+function NavItem({ id, name, color, selected }) {
+  const { setNavItemSelected } = useContext(PlanetContext);
+
   return (
-    <NavItemContainer color={color}>
+    <NavItemContainer
+      color={color}
+      className={selected && 'selected'}
+      onClick={() => setNavItemSelected(id)}
+    >
       {name}
     </NavItemContainer>
   )

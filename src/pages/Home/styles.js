@@ -1,14 +1,7 @@
 import styled from 'styled-components';
 
-import backgroundImage from '../../assets/background-stars.svg';
-
 export const Container = styled.div`
-  min-height: 100vh;
-  height: 100%;
-  background: #070722;
-  background-image: url(${backgroundImage});
-  background-position: center;
-  background-size: cover;
+  padding-top: 8rem;
 `;
 
 export const Wrapper = styled.div`
@@ -36,10 +29,28 @@ export const PlanetImage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 0;
 
-  > img {
+  > img:first-child {
     width: 100%;
     max-width: 35rem;
+    height: auto;
+
+    -webkit-animation: spin 60s linear infinite;
+    -moz-animation: spin 60s linear infinite;
+    animation: spin 60s linear infinite;
+
+    @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+    @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+    @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+  }
+
+  > img.geology {
+    position: absolute;
+    width: 100%;
+    max-width: 13rem;
+    bottom: -3rem;
     height: auto;
   }
 `
@@ -96,10 +107,15 @@ export const Tabs = styled.div`
     border: 1px solid rgba(255, 255, 255, .4);
     cursor: pointer;
     text-align: left;
-    transition: background .25s;
+    transition: all .25s;
 
     &:hover {
       background: rgba(255, 255, 255, .2);
+    }
+
+    &.selected {
+      background-color: ${props => props.color};
+      border-color: ${props => props.color};
     }
 
     > span {

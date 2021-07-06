@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+import backgroundImage from '../assets/background-stars.svg';
+
 const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
@@ -16,7 +18,13 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    position: relative;
+    height: 100%;
+    min-height: 100vh;
+
+    background: #070722;
+    background-image: url(${backgroundImage});
+    background-position: center;
+    background-size: cover;
   }
 
   @media(max-width: 905px) {
