@@ -2,6 +2,14 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding-top: 8rem;
+
+  @media(max-width: 905px) {
+    padding-top: 14rem;
+  }
+
+  @media(max-width: 705px) {
+    
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -34,16 +42,8 @@ export const PlanetImage = styled.div`
 
   > img:first-child {
     width: 100%;
-    max-width: 35rem;
+    max-width: 30rem;
     height: auto;
-
-    -webkit-animation: spin 60s linear infinite;
-    -moz-animation: spin 60s linear infinite;
-    animation: spin 60s linear infinite;
-
-    @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-    @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-    @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
   }
 
   > img.geology {
@@ -61,6 +61,7 @@ export const Sidebar = styled.div`
     grid-template-columns: 3fr 2fr;
     gap: 5rem;
     align-items: center;
+    padding: 5rem 0;
   }
 
   @media(max-width: 705px) {
@@ -150,7 +151,48 @@ export const Tabs = styled.div`
   }
 
   @media(max-width: 705px) {
-    display: none;
+    position: fixed;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #070722;
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
+    top: 7.8rem;
+    left: 0;
+    right: 0;
+    z-index: 9;
+
+    > button {
+      border: none;
+      background: none;
+      padding: 0;
+      text-align: center;
+      width: 30%;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      padding: 2rem 0;
+
+      &:hover {
+        background: 0;
+      }
+
+      &.selected {
+        background: 0;
+        border-color: ${props => props.color};
+        border-top-color: transparent;
+        
+        > span + span {
+          color: #fafafa;
+        }
+      }
+
+      > span {
+        margin: 0;
+      }
+
+      > span + span {
+        color: #ccc;
+      }
+    }
   }
 `
 
@@ -161,7 +203,7 @@ export const Bottom = styled.div`
   margin: 4rem 0;
 
   > div.card {
-    border: 1px solid rgba(255, 255, 255, .2);;
+    border: 1px solid rgba(255, 255, 255, .2);
     padding: 2rem;
 
     > h5 {
@@ -178,9 +220,16 @@ export const Bottom = styled.div`
 
   @media(max-width: 905px) {
     grid-template-columns: repeat(2, 1fr);
+    margin: 0;
   }
 
   @media(max-width: 705px) {
     grid-template-columns: repeat(1, 1fr);
+
+    > div.card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 `

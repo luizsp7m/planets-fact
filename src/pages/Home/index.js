@@ -3,14 +3,23 @@ import Header from '../../components/Header';
 
 import { PlanetContext } from '../../contexts/PlanetContext';
 
-import { Container, Wrapper, Main, Grid, PlanetImage, Sidebar, Description, Tabs, Bottom } from './styles';
+import {
+  Container,
+  Wrapper,
+  Main,
+  Grid,
+  PlanetImage,
+  Sidebar,
+  Description,
+  Tabs,
+  Bottom,
+  TabsMobile
+} from './styles';
 
 function Home() {
   const [tab, setTab] = useState(1);
 
   const { planet } = useContext(PlanetContext);
-
-  console.log(planet.images.overview);
 
   return (
     <Container>
@@ -20,7 +29,7 @@ function Home() {
         <Main>
           <Grid>
             <PlanetImage>
-              { tab === 1 ? (
+              {tab === 1 ? (
                 <img src={planet.images.overview} alt='Overview' />
               ) : (
                 tab === 2 ? (
@@ -31,7 +40,7 @@ function Home() {
                     <img src={planet.images.geology} alt='Geology' className={'geology'} />
                   </>
                 )
-              ) }
+              )}
             </PlanetImage>
 
             <Sidebar>

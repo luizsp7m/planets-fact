@@ -13,6 +13,8 @@ function Header() {
 
   function toggle() {
     const navbarNav = document.querySelector('.navbar-nav');
+    // const body = document.body;
+    // body.style.overflow = 'hidden';
     navbarNav.classList.toggle('toggled');
   }
 
@@ -29,6 +31,7 @@ function Header() {
               name={planet.name}
               color={planet.color}
               selected={planet.id === navItemSelected}
+              toggle={toggle}
             />
           ))}
         </div>
@@ -41,14 +44,17 @@ function Header() {
   );
 }
 
-function NavItem({ id, name, color, selected }) {
+function NavItem({ id, name, color, selected, toggle }) {
   const { setNavItemSelected } = useContext(PlanetContext);
 
   return (
     <NavItemContainer
       color={color}
       className={selected && 'selected'}
-      onClick={() => setNavItemSelected(id)}
+      onClick={() => {
+        setNavItemSelected(id);
+        toggle();
+      }}
     >
       {name}
     </NavItemContainer>
