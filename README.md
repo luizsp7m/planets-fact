@@ -1,6 +1,6 @@
 # Planets Fact
 
-##### [Site URL](https://weather-app-pi-mauve.vercel.app/) 🚧
+##### [Site URL](https://planets-fact-theta.vercel.app/)
 
 ### The challenge
 
